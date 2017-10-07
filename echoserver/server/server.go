@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"time"
 
-	"upcode-academy-golang/echoserver_full/common"
+	"upcode-academy-golang/echoserver/common"
 
 	"github.com/gorilla/mux"
 )

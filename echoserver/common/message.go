@@ -1,6 +1,8 @@
 package common
 
-/* An import is missing here */
+import (
+	"fmt"
+)
 
 type Message struct {
 	Value string `json:"value"`
