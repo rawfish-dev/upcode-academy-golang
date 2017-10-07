@@ -45,7 +45,9 @@ func sendDataWithProvider(dataProvider interfaces.DataProvider) {
 	data = append([]string{dataProvider.BuildMessagePad()}, data...)
 
 	for _, value := range data {
-		constructedMessage := constructMessage(value)
+		constructedMessage := common.Message{
+			Value: value,
+		}
 
 		dataBytes, err := json.Marshal(constructedMessage)
 		if err != nil {
@@ -56,11 +58,5 @@ func sendDataWithProvider(dataProvider interfaces.DataProvider) {
 		if err != nil {
 			log.Fatalf("unable to complete http request due to %v", err)
 		}
-	}
-}
-
-func constructMessage(value string) common.Message {
-	return common.Message{
-		Value: value,
 	}
 }
