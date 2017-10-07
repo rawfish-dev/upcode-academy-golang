@@ -1,0 +1,3 @@
+Always know what your code is supposed to do before you start writing it
+Test your code before you ship it.
+Practice makes perfect!
