@@ -1,0 +1,19 @@
+{
+	"comment": "",
+	"ignore": "test",
+	"package": [
+		{
+			"checksumSHA1": "iIUYZyoanCQQTUaWsu8b+iOSPt4=",
+			"path": "github.com/gorilla/context",
+			"revision": "14f550f51af52180c2eefed15e5fd18d63c0a64a",
+			"revisionTime": "2014-06-04T16:11:50Z"
+		},
+		{
+			"checksumSHA1": "XX7Ae9Qxahgb4HjMWHnAE29js6w=",
+			"path": "github.com/gorilla/mux",
+			"revision": "4b8fbc56f3b2400a7c7ea3dba9b3539787c486b6",
+			"revisionTime": "2014-08-11T14:46:53Z"
+		}
+	],
+	"rootPath": "upcode-academy-golang/echoserver"
+}

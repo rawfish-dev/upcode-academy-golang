@@ -23,7 +23,7 @@ func init() {
 
 func main() {
 	dataProviders := []interfaces.DataProvider{
-		/* A call to create the memory buffer is missing here */
+		memory.NewMemoryBuffer(),
 		filereader.NewFileReader("filereader/data.txt"),
 	}
 
@@ -35,16 +35,17 @@ func main() {
 }
 
 func sendAll(dataProviders []interfaces.DataProvider) {
-	/* A mechanism to send the data for all providers is missing here */
-	sendDataWithProvider(dataProvider)
+	for _, dataProvider := range dataProviders {
+		sendDataWithProvider(dataProvider)
+	}
 }
 
 func sendDataWithProvider(dataProvider interfaces.DataProvider) {
 	data := dataProvider.ReadAll()
 
-	/* A call to retrieve the appropriate message pad is missing here */
+	messagePad := dataProvider.BuildMessagePad()
 
-	/* Some functionality to prepend the message pad to the data is missing here */
+	data = append([]string{messagePad}, data...)
 
 	for _, value := range data {
 		constructedMessage := common.Message{

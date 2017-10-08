@@ -5,7 +5,7 @@ import (
 	"upcode-academy-golang/echoserver/interfaces"
 )
 
-/* An interface check is missing here */
+var _ interfaces.DataProvider = new(MemoryBuffer)
 
 type MemoryBuffer struct{}
 
@@ -18,7 +18,7 @@ func (m *MemoryBuffer) BuildMessagePad() string {
 }
 
 func (m *MemoryBuffer) ReadAll() []string {
-	/* A function call is missing here */
+	return dataSource()
 }
 
 func dataSource() []string {
