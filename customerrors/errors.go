@@ -1,5 +1,7 @@
 package main
 
+/* Add an interface check here for the custom errors we have */
+
 type FileCouldNotBeOpenedError struct {
 	message string
 }
