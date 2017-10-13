@@ -23,6 +23,8 @@ filereader/filereader.go:29: f.FileName undefined (type *FileReader has no field
 filereader/filereader.go:31: f.FileName undefined (type *FileReader has no field or method FileName)
 ```
 
+Made a small change.
+
 In its original state, the code will not compile. Fix up this program by looking in the source code for comments e.g `/* An interface method is missing here */`. The comment is a marker telling you that code needs to be added there for the program to work as expected.
 
 
