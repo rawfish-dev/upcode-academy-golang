@@ -30,9 +30,9 @@ func Execute() {
 
 	defer func() {
 		defer func() {
-			fmt.Println("some defered function")
+			fmt.Println("some deferred function")
 		}()
 
-		fmt.Println("another defered function")
+		fmt.Println("another deferred function")
 	}()
 }
