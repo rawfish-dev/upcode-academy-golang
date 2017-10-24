@@ -19,27 +19,54 @@ func NewProcessor(l *log.Logger) *Processor {
 }
 
 func (p *Processor) Process(rawCountries []common.Country, rawStates []common.State, rawCities []common.City) []string {
-	/*
+	// Country ID -> Country
+	mappedCountries := ProcessCountries(rawCountries)
 
-		Complete the entire implementation for Process
+	// CountryID -> []State
+	mappedStates := ProcessStates(rawStates)
 
-	*/
+	// StateID -> []City
+	mappedCities := ProcessCities(rawCities)
+
+	// Why?
+	processedData := make([]common.RowData, 0, len(rawCountries))
+	for countryID, country := range mappedCountries {
+		for _, state := range mappedStates[countryID] {
+			for _, city := range mappedCities[state.ID] {
+				rowData := common.RowData{
+					CountryName: country.Name,
+					StateName:   state.Name,
+					CityName:    city.Name,
+				}
+				processedData = append(processedData, rowData)
+			}
+		}
+	}
+
+	sortedRowData := SortRowData(processedData)
+
+	PrependID(sortedRowData)
+
+	return sortedRowData
 }
 
 func SortRowData(rowData []common.RowData) []string {
-	/*
+	csvRows := make([]string, 0, len(rowData))
+	for idx := range rowData {
+		csvRow := rowData[idx].CountryName + "," + rowData[idx].StateName + "," + rowData[idx].CityName
+		csvRows = append(csvRows, csvRow)
+	}
 
-		Complete the entire implementation for SortRowData
+	sort.Strings(csvRows)
 
-	*/
+	// Sorted
+	return csvRows
 }
 
 func PrependID(sortedData []string) {
-	/*
-
-		Complete the entire implementation for PrependID
-
-	*/
+	for idx := range sortedData {
+		sortedData[idx] = strconv.Itoa(idx+1) + "," + sortedData[idx]
+	}
 }
 
 func ProcessCountries(countries []common.Country) map[string]common.Country {
@@ -61,9 +88,10 @@ func ProcessStates(states []common.State) map[string][]common.State {
 }
 
 func ProcessCities(cities []common.City) map[string][]common.City {
-	/*
+	mappedCities := make(map[string][]common.City)
+	for idx := range cities {
+		mappedCities[cities[idx].StateID] = append(mappedCities[cities[idx].StateID], cities[idx])
+	}
 
-		Complete the entire implementation for ProcessCities
-
-	*/
+	return mappedCities
 }

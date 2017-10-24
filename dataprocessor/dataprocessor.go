@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-	logFile, err := os.OpenFile("output.log", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0666)
+	logFile, err := os.OpenFile("output.log", os.O_RDWR|os.O_CREATE|os.O_TRUNC, 0777)
 	if err != nil {
 		panic(err)
 	}

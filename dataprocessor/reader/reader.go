@@ -61,9 +61,35 @@ func (r *Reader) readCountries() []common.Country {
 }
 
 func (r *Reader) readStates() []common.State {
-	/*
-		Complete the entire implementation for readStates
-	*/
+	file, err := os.Open(filepath.Join(folderName, "processed_states.csv"))
+	if err != nil {
+		r.logger.Fatal(err)
+	}
+
+	lines, err := csv.NewReader(file).ReadAll()
+
+	states := make([]common.State, 0, len(lines))
+	for idx, line := range lines {
+		// Skip header line
+		if idx == 0 {
+			continue
+		}
+
+		if len(line) != 3 {
+			r.logger.Printf("line %s did not have the right number of values, skipping...", line)
+			continue
+		}
+
+		state := common.State{
+			ID:        line[0],
+			Name:      line[1],
+			CountryID: line[2],
+		}
+
+		states = append(states, state)
+	}
+
+	return states
 }
 
 func (r *Reader) readCities() []common.City {
